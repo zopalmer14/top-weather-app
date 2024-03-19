@@ -6,12 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script defer src="index.js"></script>
 </head>
 <body>
+    <header>
+        <div class="logo-container">
+            <h1>Weather App</h1>
+        </div>
+
+        <nav>
+            <form class="search-form" action="#" method="get">
+                <input type="text" placeholder="Search location" name="city-search" id="city-search">
+                <button type="submit"><span class="material-icons">search</span></button>
+            </form>
+        </nav>
+
+        <label for="temp-unit">°F, mph / °C, m/s
+            <input type="checkbox" name="temp-unit" id="temp-unit"/>
+        </label>
+    </header>
+
     <main>
         <div class="content-container">
             <div class="weather-info">
+                <div class="city-info">
+                    <h1>City Name, Country</h1>
+                    <div>Today's Date & Time</div>
+                </div>
+
                 <div class="info-grid">
                     <div class="info-item"></div>
                     <div class="info-item"></div>

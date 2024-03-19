@@ -62,22 +62,125 @@ table {
 /* Base Styling */
 
 body {
+	width: 100vw;
+	height: 100vh;
+}
+
+body, input {
     font-size: 16px;
     font-family: Garamond, sans-serif;
 }
 
-/* Main Content Styling */
-
-.content-container {
-	width: 100vw;
-	height: 100vh;
+input, button { 
+	padding: 0;
+	border: none;
 }
+
+*:focus {
+	outline: none;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+/* Header Styling */
+
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	background-color: var(--blue-accent);
+	padding: 1.25rem 2rem;
+}
+
+header .logo-container h1 {
+	color: white;
+	font-size: 1.25rem;
+	font-weight: bold;
+}
+
+header input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    margin: 0;
+}
+
+header label {
+	padding: 0.5rem 1rem;
+	border: 2px solid transparent;
+	border-radius: 999px;
+	transition: 0.5s ease-in-out;
+}
+
+header label:hover {
+    cursor: pointer;
+	border-color: var(--green-accent);
+}
+
+header label:has(input:checked) {
+    background-color: var(--green-accent);
+}
+
+header label:has(input:not(:checked)) {
+    background-color: lightgray;
+}
+
+.search-form {
+	display: flex;
+	min-width: 30ch;
+	padding: 0 1rem;
+
+	background-color: var(--gray-accent);
+	border: 1px solid transparent;
+	border-radius: 999px;
+	transition: 0.25s ease-in-out;
+}
+
+.search-form input {
+	flex: 1 1 0;
+	padding: 0.5rem 0;
+	background-color: var(--gray-accent);
+}
+
+.search-form:has(input:focus), .search-form:has(input:hover) {
+	border-color: black;
+}
+
+.search-form input::placeholder {
+	color: gray;
+}
+
+.search-form button {
+	display: flex;
+	align-items: center;
+	height: 34px;
+	background-color: var(--gray-accent);
+}
+
+/* Main Content Styling */
 
 /* Weather Info Styling */
 
 .content-container .weather-info {
 	display: flex;
 	justify-content: center;
+	gap: 2rem;
+	padding: 2rem;
+}
+
+.content-container .weather-info .city-info {
+	background-color: var(--gray-accent);
+	padding: 2rem;
+	line-height: 1.5;
+}
+
+.content-container .weather-info .city-info h1 {
+	font-size: 1.25rem;
+	font-weight: bold;
 }
 
 .content-container .weather-info .info-grid {
@@ -87,7 +190,7 @@ body {
 
 	background-color: var(--gray-accent);
 	width: calc(300px + 2rem);
-	padding: 1rem;
+	padding: 2rem;
 }
 
 .content-container .weather-info .info-grid .info-item {
