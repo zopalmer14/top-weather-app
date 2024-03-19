@@ -54,8 +54,9 @@ table {
 /* Variable Declaration */
 
 :root {
-    --white-accent: white;
     --gray-accent: whitesmoke;
+	--blue-accent: #318CE7;
+	--green-accent: #74992E;
 }
 
 /* Base Styling */
@@ -63,4 +64,32 @@ table {
 body {
     font-size: 16px;
     font-family: Garamond, sans-serif;
+}
+
+/* Main Content Styling */
+
+.content-container {
+	width: 100vw;
+	height: 100vh;
+}
+
+/* Weather Info Styling */
+
+.content-container .weather-info {
+	display: flex;
+	justify-content: center;
+}
+
+.content-container .weather-info .info-grid {
+	display: grid;
+	grid-template: repeat(3, 75px) / repeat(3, 100px);
+	grid-gap: 1rem;
+
+	background-color: var(--gray-accent);
+	width: calc(300px + 2rem);
+	padding: 1rem;
+}
+
+.content-container .weather-info .info-grid .info-item {
+	background-color: var(--blue-accent);
 }
