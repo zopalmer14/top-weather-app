@@ -58,13 +58,24 @@ function updateWeatherDisplay(current_weather) {
     for (const prop in current_weather) {
         // exclude those properties not containing weather info
         if (!invalid_props.includes(prop)) {
-            // create a div to display the info for each weather property
-            const weather_info = document.createElement('div');
-            weather_info.classList.add('info-item');
-            weather_info.textContent = `${prop}: ${current_weather[prop]}`;
+            // create a container div 
+            const info_item = document.createElement('div');
+            info_item.classList.add('info-item');
 
-            // append the weather info item to the info grid
-            info_grid.appendChild(weather_info);
+            // create a heading for the property name
+            const api_prop = document.createElement('h2');
+            api_prop.textContent = prop;
+
+            // create a div to hold the data value
+            const api_data = document.createElement('div');
+            api_data.textContent = current_weather[prop];
+
+            // append the heading and data to the info item
+            info_item.appendChild(api_prop);
+            info_item.appendChild(api_data);
+
+            // append the info item to the info grid
+            info_grid.appendChild(info_item);
         }
     }
 }

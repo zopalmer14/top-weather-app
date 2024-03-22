@@ -54,8 +54,10 @@ table {
 /* Variable Declaration */
 
 :root {
-    --gray-accent: whitesmoke;
-	--blue-accent: #318CE7;
+	--gray-accent: #ececec;
+	--first-accent: #9fd3c7;
+	--second-accent: #385170;
+	--third-accent: #142d4c;
 	--green-accent: #74992E;
 }
 
@@ -64,6 +66,7 @@ table {
 body {
 	width: 100vw;
 	height: 100vh;
+	background-color: var(--third-accent);
 }
 
 body, input {
@@ -91,7 +94,7 @@ header {
 	justify-content: space-between;
 	align-items: center;
 
-	background-color: var(--blue-accent);
+	background-color: var(--second-accent);
 	padding: 1.25rem 2rem;
 }
 
@@ -185,14 +188,26 @@ header label:has(input:not(:checked)) {
 
 .content-container .weather-info .info-grid {
 	display: grid;
-	grid-template: repeat(3, 75px) / repeat(3, 100px);
+	grid-template: repeat(3, 1fr) / repeat(3, 1fr);
 	grid-gap: 1rem;
 
+	min-height: 300px;
 	background-color: var(--gray-accent);
-	width: calc(300px + 2rem);
 	padding: 2rem;
 }
 
 .content-container .weather-info .info-grid .info-item {
-	background-color: var(--blue-accent);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	color: var(--first-accent);
+	background-color: var(--second-accent);
+	padding: 1rem;
+}
+
+.content-container .weather-info .info-grid .info-item h2 {
+	text-transform: capitalize;
+	font-size: 1.25rem;
+	font-weight: bold;
 }
