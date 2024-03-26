@@ -10,17 +10,43 @@ async function getWeatherData(location) {
     return response.json();
 }
 
+async function getForecastData(location) {
+    const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location}`);
+    return response.json();
+}
+
 function testAPI() {
     const default_location = 'Pittsburgh';
-    getWeatherData(default_location)
+    /* getWeatherData(default_location)
         .then(function(weather_data) {
-            // use the location data to update the left side display
+            // use the location data to update the city info display
             const location_data = weather_data.location;
             updateLocalityDisplay(location_data);
 
-            // use the current weather data to update the right side display
+            // use the current weather data to update the right side of the weather display
             const curr_weather = weather_data.current;
             updateWeatherDisplay(curr_weather);
+        })
+        .catch(function(err) {
+            console.log(err);
+        }); */
+
+    getForecastData(default_location)
+        .then(function(forecast_data) {
+            //debug
+            console.log(forecast_data);
+
+            // use the location data to update the city info display
+            const location_data = forecast_data.location;
+            updateLocalityDisplay(location_data);
+
+            // use the current weather data to update the weather display
+            const curr_weather = forecast_data.current;
+            updateWeatherGrid(curr_weather);
+            updateWeatherOverview(curr_weather);
+            
+            // use the hourly forecast data to update the hourly forecast at the bottom of the page
+
         })
         .catch(function(err) {
             console.log(err);
@@ -33,7 +59,7 @@ function updateLocalityDisplay(location_data) {
 
     // create a heading with the city, region, and country
     const city_heading = document.createElement('h1');
-    city_heading.textContent = `${location_data.name}, ${location_data.region}, ${location_data.country}`
+    city_heading.textContent = `${location_data.name}, ${location_data.country}`
 
     // create div to hold the local date and time
     const date_time_container = document.createElement('div');
@@ -44,7 +70,7 @@ function updateLocalityDisplay(location_data) {
     city_info.appendChild(date_time_container);
 }
 
-function updateWeatherDisplay(current_weather) {
+function updateWeatherGrid(current_weather) {
     // DOM references 
     const info_grid = document.querySelector('.info-grid');
 
@@ -78,6 +104,33 @@ function updateWeatherDisplay(current_weather) {
             info_grid.appendChild(info_item);
         }
     }
+}
+
+function updateWeatherOverview(current_weather) {
+    // DOM references 
+    const info_overview = document.querySelector('.info-overview');
+
+    // create an img to display the weather condition icon
+    /* const weather_img = document.createElement('img');
+    weather_img.src = current_weather.condition.icon; */
+
+    // create a header to display the current temperature
+    const curr_temp = document.createElement('h1');
+    curr_temp.textContent = current_weather.temp_f;
+
+    // create a header to state the weather condition
+    const weather_condition = document.createElement('h2');
+    weather_condition.textContent = current_weather.condition.text;
+
+    // create a header to hold the feels like
+    const feels_like_temp = document.createElement('h2');
+    feels_like_temp.textContent = current_weather.feelslike_f;
+
+    // append all of them to the info overview
+    //info_overview.appendChild(weather_img);
+    info_overview.appendChild(curr_temp);
+    info_overview.appendChild(weather_condition);
+    info_overview.appendChild(feels_like_temp);
 }
 
 testAPI();

@@ -168,41 +168,59 @@ header label:has(input:not(:checked)) {
 
 /* Weather Info Styling */
 
+.content-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.content-container .city-info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	color: var(--first-accent);
+	font-size: 1.25rem;
+	font-weight: bold;
+	margin-top: 2rem;
+	padding: 2rem;
+}
+
+.content-container .city-info h1 {
+	font-size: 1.75rem;
+}
+
 .content-container .weather-info {
 	display: flex;
 	justify-content: center;
 	gap: 2rem;
-	padding: 2rem;
+	color: var(--first-accent);
 }
 
-.content-container .weather-info .city-info {
-	background-color: var(--gray-accent);
-	padding: 2rem;
-	line-height: 1.5;
-}
-
-.content-container .weather-info .city-info h1 {
-	font-size: 1.25rem;
+.content-container .weather-info .info-overview {
 	font-weight: bold;
+	padding: 2rem;
+}
+
+.content-container .weather-info .info-overview h1 {
+	font-size: 2rem;
+}
+
+.content-container .weather-info .info-overview h2 {
+	font-size: 1.25rem;
 }
 
 .content-container .weather-info .info-grid {
 	display: grid;
 	grid-template: repeat(3, 1fr) / repeat(3, 1fr);
 	grid-gap: 1rem;
-
 	min-height: 300px;
-	background-color: var(--gray-accent);
-	padding: 2rem;
 }
 
 .content-container .weather-info .info-grid .info-item {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-
-	color: var(--first-accent);
-	background-color: var(--second-accent);
 	padding: 1rem;
 }
 
