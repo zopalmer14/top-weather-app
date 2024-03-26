@@ -67,6 +67,9 @@ body {
 	width: 100vw;
 	height: 100vh;
 	background-color: var(--third-accent);
+
+	display: flex;
+	flex-direction: column;
 }
 
 body, input {
@@ -166,15 +169,17 @@ header label:has(input:not(:checked)) {
 
 /* Main Content Styling */
 
-/* Weather Info Styling */
-
-.content-container {
+main {
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
 	align-items: center;
+	flex: 1 1 0;
 }
 
-.content-container .city-info {
+/* City Info Styling */
+
+main .city-info {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -182,50 +187,101 @@ header label:has(input:not(:checked)) {
 	color: var(--first-accent);
 	font-size: 1.25rem;
 	font-weight: bold;
+	line-height: 1.25;
+
 	margin-top: 2rem;
 	padding: 2rem;
 }
 
-.content-container .city-info h1 {
+main .city-info h1 {
+	color: white;
 	font-size: 1.75rem;
 }
 
-.content-container .weather-info {
+/* Weather Info Styling */
+
+main .weather-info {
 	display: flex;
 	justify-content: center;
 	gap: 2rem;
 	color: var(--first-accent);
 }
 
-.content-container .weather-info .info-overview {
+main .weather-info .info-overview {
 	font-weight: bold;
 	padding: 2rem;
 }
 
-.content-container .weather-info .info-overview h1 {
+main .weather-info .info-overview h1 {
 	font-size: 2rem;
 }
 
-.content-container .weather-info .info-overview h2 {
+main .weather-info .info-overview h3 {
 	font-size: 1.25rem;
 }
 
-.content-container .weather-info .info-grid {
+main .weather-info .info-grid {
 	display: grid;
 	grid-template: repeat(3, 1fr) / repeat(3, 1fr);
 	grid-gap: 1rem;
 	min-height: 300px;
 }
 
-.content-container .weather-info .info-grid .info-item {
+main .weather-info .info-grid .info-item {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	padding: 1rem;
 }
 
-.content-container .weather-info .info-grid .info-item h2 {
+main .weather-info .info-grid .info-item h2 {
 	text-transform: capitalize;
 	font-size: 1.25rem;
 	font-weight: bold;
+}
+
+/* Hourly Forecast Styling */
+
+main .hourly-forecast {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+main .hourly-forecast h1 {
+	color: white;
+	font-size: 2rem;
+	font-weight: bold;
+	margin-bottom: 1rem;
+}
+
+main .hourly-forecast .hourly-display {
+	display: flex;
+	justify-content: space-between;
+	min-width: 70vw;
+	padding-bottom: 2rem;
+}
+
+main .hourly-forecast .hourly-display div {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+
+	padding: 1rem;
+	color: white;
+	font-weight: bold;
+}
+
+main .hourly-forecast .hourly-display div h1 {
+	color: var(--first-accent);
+	font-size: 1.75rem;
+}
+
+main .hourly-forecast .hourly-display div h2 {
+	margin-bottom: 1rem;
+	font-size: 1.5rem;
+}
+
+main .hourly-forecast .hourly-display div h3 {
+	font-size: 1.25rem;
 }

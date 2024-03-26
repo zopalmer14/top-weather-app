@@ -46,7 +46,9 @@ function testAPI() {
             updateWeatherOverview(curr_weather);
             
             // use the hourly forecast data to update the hourly forecast at the bottom of the page
-
+            const hourly_forecast = forecast_data.forecast.forecastday[0].hour;
+            const curr_time = curr_weather.last_updated;
+            updateHourlyDisplay(hourly_forecast, curr_time);
         })
         .catch(function(err) {
             console.log(err);
@@ -110,27 +112,65 @@ function updateWeatherOverview(current_weather) {
     // DOM references 
     const info_overview = document.querySelector('.info-overview');
 
+    // create the display
+    createOverview(info_overview, current_weather);
+
     // create an img to display the weather condition icon
     /* const weather_img = document.createElement('img');
     weather_img.src = current_weather.condition.icon; */
 
-    // create a header to display the current temperature
-    const curr_temp = document.createElement('h1');
-    curr_temp.textContent = current_weather.temp_f;
-
-    // create a header to state the weather condition
-    const weather_condition = document.createElement('h2');
-    weather_condition.textContent = current_weather.condition.text;
-
-    // create a header to hold the feels like
-    const feels_like_temp = document.createElement('h2');
-    feels_like_temp.textContent = current_weather.feelslike_f;
-
     // append all of them to the info overview
     //info_overview.appendChild(weather_img);
-    info_overview.appendChild(curr_temp);
-    info_overview.appendChild(weather_condition);
-    info_overview.appendChild(feels_like_temp);
+}
+
+// helper function to make weather overview display
+function createOverview(overview_container, weather_data) {
+    // create a h1 to display the current temperature
+    const curr_temp = document.createElement('h2');
+    curr_temp.textContent = weather_data.temp_f;
+
+    // create a h2 to state the weather condition
+    const weather_condition = document.createElement('h3');
+    weather_condition.textContent = weather_data.condition.text;
+
+    // create a h3 to hold the feels like
+    const feels_like_temp = document.createElement('h3');
+    feels_like_temp.textContent = weather_data.feelslike_f;
+
+    // append all of them to the overview container
+    overview_container.appendChild(curr_temp);
+    overview_container.appendChild(weather_condition);
+    overview_container.appendChild(feels_like_temp);
+}
+
+function updateHourlyDisplay(hourly_forecast, curr_time) {
+    // DOM references 
+    const hourly_display = document.querySelector('.hourly-display');
+
+    console.log(hourly_forecast);
+    console.log(curr_time);
+
+    // filter the hourly fore_cast to show the seven entries after the current time
+    const filtered_forecast = hourly_forecast.filter((hour_info) => hour_info.time > curr_time);
+    console.log(filtered_forecast);
+    const num_hours_to_display = Math.min(7, filtered_forecast.length);
+
+    // iterate the forecast hours
+    for (let i = 0; i < num_hours_to_display; i++) {
+        const hour_info = filtered_forecast[i];
+
+        // create a container to hold the hourly weather overview
+        const hourly_overview = document.createElement('div');
+
+        // create a h2 to display the time/hour and append to the overview
+        const time_info = document.createElement('h1');
+        time_info.textContent = hour_info.time.split(' ')[1];
+        hourly_overview.appendChild(time_info);
+
+        // add the content and append the hourly overview to the display
+        createOverview(hourly_overview, hour_info);
+        hourly_display.appendChild(hourly_overview);
+    }
 }
 
 testAPI();
